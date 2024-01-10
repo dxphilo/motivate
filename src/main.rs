@@ -53,9 +53,9 @@ pub fn get_quotes(json_value: Value) {
                 let rand_num = rand::thread_rng().gen_range(0..=quotes.len() - 1);
                 let rand_quote = &quotes[rand_num];
                 println!("\n");
-                println!("{: ^50}", rand_quote.quote);
+                println!("{: ^50}", format!("\n\"{}\"\n", rand_quote.quote));
                 println!("\n");
-                println!("{:-^50}", rand_quote.author);
+                println!("{: ^50}", format!("-- {}",rand_quote.author));
                 println!("\n");
             }
             Err(err) => {
