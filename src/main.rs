@@ -37,7 +37,7 @@ fn get_data_path() -> Option<PathBuf> {
 }
 
 fn read_data_file(path: PathBuf) {
-    let file_contents_result = fs::read_to_string(&path);
+    let file_contents_result = fs::read_to_string(path);
 
     // Check if reading the file was successful
     match file_contents_result {
@@ -60,7 +60,7 @@ pub fn get_quotes(json_value: Value) {
             Ok(quotes) => {
                 let rand_num = rand::thread_rng().gen_range(0..=quotes.len() - 1);
                 let rand_quote = &quotes[rand_num];
-                print_formatted_quote(&rand_quote);
+                print_formatted_quote(rand_quote);
             }
             Err(err) => {
                 eprintln!("Error deserializing JSON: {}", err);
@@ -72,9 +72,10 @@ pub fn get_quotes(json_value: Value) {
 }
 
 fn print_formatted_quote(quote: &Quote) {
-    println!("\n"); 
+    println!("\n");
     println!("{:^50}", format!("\"{}\"", quote.quote));
-    println!("\n"); 
+
+    println!("\n");
     println!("{:^50}", format!("-- {}", quote.author));
     println!("\n{:-^50}", "");
 }
@@ -83,5 +84,5 @@ fn print_formatted_quote(quote: &Quote) {
 // 001 and 180 for the file name to be read for the quotes
 fn gen_rand() -> String {
     let random_num = rand::thread_rng().gen_range(1..=180);
-    return format!("{:03}", random_num);
+    format!("{:03}", random_num)
 }
