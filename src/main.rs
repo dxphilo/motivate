@@ -72,7 +72,6 @@ pub fn get_quotes(json_value: Value) {
 }
 
 fn print_formatted_quote(quote: &Quote) {
-    println!("\n{:-^50}", "");
     println!("\n"); 
     println!("{:^50}", format!("\"{}\"", quote.quote));
     println!("\n"); 
