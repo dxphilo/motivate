@@ -1,9 +1,8 @@
 use rand::Rng;
 use serde::Deserialize;
 use serde_json::Value;
-use std::env;
-use std::fs;
-use std::path::Path;
+use std::path::PathBuf;
+use std::{env, fs};
 
 #[derive(Debug, Deserialize)]
 pub struct Quote {
@@ -12,23 +11,33 @@ pub struct Quote {
 }
 
 fn main() {
-    let argument = env::args().nth(1);
-
-    if let Some(arg) = argument {
-        if arg == "motivate" {
-            motivate()
-        }
-    }
+    motivate();
 }
 
 fn motivate() {
-    let rand_filename = gen_rand();
-    let file_name = format!("./data/{}.json", rand_filename);
+    if let Some(file_path) = get_data_path() {
+        let rand_filename = gen_rand();
+        let rand_json = format!("{}.json", rand_filename);
+        let full_path = file_path.join(rand_json);
+        read_data_file(full_path);
+    }
+}
 
-    let quotes_path = Path::new(&file_name);
+fn get_data_path() -> Option<PathBuf> {
+    if let Ok(path_dir) = env::current_exe() {
+        if path_dir == PathBuf::from("/opt/motivate/motivate") {
+            Some(PathBuf::from("/opt/motivate/data/"))
+        } else {
+            Some(PathBuf::from("./data/"))
+        }
+    } else {
+        eprintln!("Error getting current executable path");
+        None
+    }
+}
 
-    // Read file contents as a string
-    let file_contents_result = fs::read_to_string(&quotes_path);
+fn read_data_file(path: PathBuf) {
+    let file_contents_result = fs::read_to_string(&path);
 
     // Check if reading the file was successful
     match file_contents_result {
@@ -41,7 +50,6 @@ fn motivate() {
         }
     }
 }
-
 // The function prints out the quote
 pub fn get_quotes(json_value: Value) {
     if let Some(data_array) = json_value.get("data").and_then(Value::as_array) {
@@ -52,11 +60,7 @@ pub fn get_quotes(json_value: Value) {
             Ok(quotes) => {
                 let rand_num = rand::thread_rng().gen_range(0..=quotes.len() - 1);
                 let rand_quote = &quotes[rand_num];
-                println!("\n");
-                println!("{: ^50}", format!("\n\"{}\"\n", rand_quote.quote));
-                println!("\n");
-                println!("{: ^50}", format!("-- {}",rand_quote.author));
-                println!("\n");
+                print_formatted_quote(&rand_quote);
             }
             Err(err) => {
                 eprintln!("Error deserializing JSON: {}", err);
@@ -65,6 +69,15 @@ pub fn get_quotes(json_value: Value) {
     } else {
         eprintln!("Error: 'data' field is missing or not an array");
     }
+}
+
+fn print_formatted_quote(quote: &Quote) {
+    println!("\n{:-^50}", "");
+    println!("\n"); 
+    println!("{:^50}", format!("\"{}\"", quote.quote));
+    println!("\n"); 
+    println!("{:^50}", format!("-- {}", quote.author));
+    println!("\n{:-^50}", "");
 }
 
 // This function will generate a random number between

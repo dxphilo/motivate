@@ -11,26 +11,25 @@ PROJECT_NAME="motivate"
 # Installation directory
 INSTALLDIR="/opt/$PROJECT_NAME"
 
-# Create the installation folder
+# Create motivate folder
 mkdir -p $INSTALLDIR
 
-# Move to the project directory
-cd $INSTALLDIR
+# Copy the data folder and set permissions
+cp -r data $INSTALLDIR/
+chmod -R 777 $INSTALLDIR/data
 
-# Clone the repository
-git clone https://github.com/dxphilo/motivate.git
+# Copy the executable to the installation directory
+cp ./target/release/$PROJECT_NAME $INSTALLDIR
 
-# Move to the project directory
-cd motivate
-
-# Install the project using cargo
-cargo install --path .
+# Check if the symbolic link already exists
+if [ -L "/usr/local/bin/$PROJECT_NAME" ]; then
+    # Remove existing symbolic link
+    rm /usr/local/bin/$PROJECT_NAME
+fi
 
 # Create a symbolic link to the installed binary
-ln -s $INSTALLDIR/target/release/$PROJECT_NAME /usr/local/bin/$PROJECT_NAME
+ln -s $INSTALLDIR/$PROJECT_NAME /usr/local/bin/$PROJECT_NAME
 
-# Optional: Copy data folder and set permissions
-# cp -r $INSTALLDIR/data $INSTALLDIR
-# chmod -R 777 $INSTALLDIR/data
+source ~/.bashrc
 
 echo "$PROJECT_NAME installed successfully!"
