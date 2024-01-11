@@ -16,7 +16,7 @@ git
 rustc
 ```
 
-## Installtion
+## Installation
 
 #### Linux/MacOs
 
@@ -53,6 +53,6 @@ If the installation is successful, you should be able to globally get random quo
 
 ## Contribution
 
-This project is open for contributions! If you notice areas that could be improved, have suggestions for better approaches, or any general considerations, please don't hesitate to share them in the issues section of PR's.
+This project is open for contributions! If you notice areas that could be improved, have suggestions for better approaches, or any general considerations, please don't hesitate to share them in the issues section or open a PR.
 
 If you need clarification on any aspects, feel free to open an [issue](https://github.com/dxphilo/dotfiles/issues/new). Your contributions and feedback are greatly appreciated!
