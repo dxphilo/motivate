@@ -27,6 +27,9 @@ if [ -L "/usr/local/bin/$PROJECT_NAME" ]; then
     rm /usr/local/bin/$PROJECT_NAME
 fi
 
+# Create /usr/local/bin if it doesn't exist
+mkdir -p /usr/local/bin
+
 # Create a symbolic link to the installed binary
 ln -s $INSTALLDIR/$PROJECT_NAME /usr/local/bin/$PROJECT_NAME
 
