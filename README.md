@@ -21,7 +21,7 @@ rustc
 #### Linux/MacOs
 
 ```bash
-git clone https://github.com/dxphilo/dotfiles.git
+git clone https://github.com/dxphilo/motivate.git
 cd motivate
 cargo build --release
 sudo bash install.sh
