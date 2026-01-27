@@ -16,3 +16,17 @@ include_dir = "0.7.4"
 [profile.dist]
 inherits = "release"
 lto = "thin"
+
+# Add this new section to enable the universal installers
+[package.metadata.dist]
+# Enable the shell (Linux/macOS) and PowerShell (Windows) installers
+installers = ["shell", "powershell"]
+
+# Optional: Use static builds where possible (recommended for maximum compatibility)
+precise = true
+
+# Optional: Generate checksum files for extra security (users can verify downloads)
+checksum = true
+
+# Optional: Enable GitHub Releases features (already default, but explicit is fine)
+github-releases = true
