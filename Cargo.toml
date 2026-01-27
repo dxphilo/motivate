@@ -17,16 +17,15 @@ include_dir = "0.7.4"
 inherits = "release"
 lto = "thin"
 
-# Add this new section to enable the universal installers
-[package.metadata.dist]
-# Enable the shell (Linux/macOS) and PowerShell (Windows) installers
-installers = ["shell", "powershell"]
-
-# Optional: Use static builds where possible (recommended for maximum compatibility)
+# Global dist configuration (top-level [dist] table)
+[dist]
+# Build each package precisely/individually (recommended for single-crate projects)
 precise = true
 
-# Optional: Generate checksum files for extra security (users can verify downloads)
-checksum = true
+# Generate checksum files (use a string for the algorithm)
+checksum = "sha256"
 
-# Optional: Enable GitHub Releases features (already default, but explicit is fine)
-github-releases = true
+# Per-package dist configuration
+[package.metadata.dist]
+# Enable the universal installers
+installers = ["shell", "powershell"]

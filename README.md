@@ -8,7 +8,6 @@ This project was inspired by the Python version by Mubaris. I have been using th
 
 If you are looking for the Python version, you can find it [here](https://github.com/mubaris/motivate/tree/master).
 
-
 ## Requirements
 
 ```bash
@@ -18,17 +17,18 @@ rustc
 
 ## Installation
 
-#### Linux/MacOs
+#### Linux / macOS (curl)
 
 ```bash
-git clone https://github.com/dxphilo/motivate.git
-cd motivate
-cargo build --release
-sudo bash install.sh
-source ~/.bashrc
+curl --proto '=https' --tlsv1.2 -LsSf https://github.com/dxphilo/motivate/releases/latest/download/motivate-installer.sh | sh
+
 ```
 
-#### Windows
+#### Windows (PowerShell)
+
+```bash
+irm https://github.com/dxphilo/motivate/releases/latest/download/motivate-installer.ps1 | iex
+```
 
 I haven't tested this project on a Windows system, but be sure to check for Windows configuration.
 
@@ -43,13 +43,11 @@ If the installation is successful, you should be able to globally get random quo
 "Don’t be pushed around by the fears in your mind. Be led by the dreams in your heart."
 
 
-                -- Roy T. Bennett                 
+                -- Roy T. Bennett
 
 --------------------------------------------------
 
 ```
-
-
 
 ## Contribution
 
