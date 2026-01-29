@@ -11,7 +11,6 @@ If you are looking for the Python version, you can find it [here](https://github
 ## Requirements
 
 ```bash
-git
 rustc
 ```
 
@@ -20,14 +19,14 @@ rustc
 #### Linux / macOS (curl)
 
 ```bash
-curl --proto '=https' --tlsv1.2 -LsSf https://github.com/dxphilo/motivate/releases/latest/download/motivate-installer.sh | sh
+curl --proto '=https' --tlsv1.2 -LsSf https://github.com/dxphilo/motivate/releases/download/v0.2.0/motivate-installer.sh | sh
 
 ```
 
 #### Windows (PowerShell)
 
 ```bash
-irm https://github.com/dxphilo/motivate/releases/latest/download/motivate-installer.ps1 | iex
+powershell -ExecutionPolicy Bypass -c "irm https://github.com/dxphilo/motivate/releases/download/v0.2.0/motivate-installer.ps1 | iex"
 ```
 
 I haven't tested this project on a Windows system, but be sure to check for Windows configuration.
